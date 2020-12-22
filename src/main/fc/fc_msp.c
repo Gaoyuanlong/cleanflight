@@ -56,6 +56,7 @@
 
 #include "fc/config.h"
 #include "fc/controlrate_profile.h"
+#include "fc/fc_car.h"
 #include "fc/fc_core.h"
 #include "fc/fc_msp.h"
 #include "fc/fc_rc.h"
@@ -1007,12 +1008,12 @@ static bool mspFcProcessOutCommand(uint8_t cmdMSP, sbuf_t *dst, mspPostProcessFn
 
     case MSP_MOTOR:
         for (unsigned i = 0; i < 8; i++) {
-            if (i >= MAX_SUPPORTED_MOTORS || !pwmGetMotors()[i].enabled) {
-                sbufWriteU16(dst, 0);
-                continue;
-            }
+            // if (i >= MAX_SUPPORTED_MOTORS || !pwmGetMotors()[i].enabled) {
+            //     sbufWriteU16(dst, 0);
+            //     continue;
+            // }
 
-            sbufWriteU16(dst, convertMotorToExternal(motor[i]));
+            sbufWriteU16(dst, convertMotorToExternal(carGetMotor()));
         }
         break;
 
@@ -1624,8 +1625,8 @@ static mspResult_e mspFcProcessInCommand(uint8_t cmdMSP, sbuf_t *src)
 #endif
 
     case MSP_SET_MOTOR:
-        for (int i = 0; i < getMotorCount(); i++) {
-            motor_disarmed[i] = convertExternalToMotor(sbufReadU16(src));
+        for (int i = 0; i < 8; i++) {
+            carSetMotor(convertExternalToMotor(sbufReadU16(src)));
         }
         break;
 

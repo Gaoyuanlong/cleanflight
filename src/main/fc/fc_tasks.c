@@ -368,13 +368,13 @@ cfTask_t cfTasks[TASK_COUNT] = {
     },
 
 #ifndef USE_OSD_SLAVE
-    [TASK_GYROPID] = {
-        .taskName = "PID",
-        .subTaskName = "GYRO",
-        .taskFunc = taskMainPidLoop,
-        .desiredPeriod = TASK_GYROPID_DESIRED_PERIOD,
-        .staticPriority = TASK_PRIORITY_REALTIME,
-    },
+    // [TASK_GYROPID] = {
+    //     .taskName = "PID",
+    //     .subTaskName = "GYRO",
+    //     .taskFunc = taskMainPidLoop,
+    //     .desiredPeriod = TASK_GYROPID_DESIRED_PERIOD,
+    //     .staticPriority = TASK_PRIORITY_REALTIME,
+    // },
 
     [TASK_ACCEL] = {
         .taskName = "ACCEL",

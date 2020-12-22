@@ -737,6 +737,7 @@ FC_SRC = \
             drivers/pwm_output.c \
             drivers/rx_pwm.c \
             drivers/serial_softserial.c \
+            fc/fc_car.c \
             fc/fc_core.c \
             fc/fc_rc.c \
             fc/rc_adjustments.c \

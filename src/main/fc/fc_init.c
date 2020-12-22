@@ -367,23 +367,23 @@ void init(void)
     serialInit(feature(FEATURE_SOFTSERIAL), SERIAL_PORT_NONE);
 #endif
 
-    mixerInit(mixerConfig()->mixerMode);
+    // mixerInit(mixerConfig()->mixerMode);
 #ifdef USE_SERVOS
     servosInit();
 #endif
 
-    uint16_t idlePulse = motorConfig()->mincommand;
-    if (feature(FEATURE_3D)) {
-        idlePulse = flight3DConfig()->neutral3d;
-    }
+    // uint16_t idlePulse = motorConfig()->mincommand;
+    // if (feature(FEATURE_3D)) {
+    //     idlePulse = flight3DConfig()->neutral3d;
+    // }
 
-    if (motorConfig()->dev.motorPwmProtocol == PWM_TYPE_BRUSHED) {
-        featureClear(FEATURE_3D);
-        idlePulse = 0; // brushed motors
-    }
+    // if (motorConfig()->dev.motorPwmProtocol == PWM_TYPE_BRUSHED) {
+    //     featureClear(FEATURE_3D);
+    //     idlePulse = 0; // brushed motors
+    // }
 
-    mixerConfigureOutput();
-    motorDevInit(&motorConfig()->dev, idlePulse, getMotorCount());
+    // mixerConfigureOutput();
+    // motorDevInit(&motorConfig()->dev, idlePulse, getMotorCount());
 
 #ifdef USE_SERVOS
     servoConfigureOutput();
@@ -515,7 +515,7 @@ void init(void)
     LED1_OFF;
 
     // gyro.targetLooptime set in sensorsAutodetect(), so we are ready to call pidInit()
-    pidInit(currentPidProfile);
+    // pidInit(currentPidProfile);
 
 #ifdef USE_SERVOS
     servosFilterInit();
@@ -707,7 +707,7 @@ void init(void)
 
     // Latch active features AGAIN since some may be modified by init().
     latchActiveFeatures();
-    pwmEnableMotors();
+    // pwmEnableMotors();
 
 #ifdef USE_OSD_SLAVE
     osdSlaveTasksInit();
