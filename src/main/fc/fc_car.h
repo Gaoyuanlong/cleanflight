@@ -17,10 +17,12 @@
 
 #pragma once
 
-#define CAR_MAX_MOTOR 2000
-#define CAR_MIN_MOTOR 1000
-#define CAR_OFFSET_MOTOR 0
+#define CAR_MAX_MOTOR 500
+#define CAR_MID_MOTOR 0
+#define CAR_MIN_MOTOR -500
+#define CAR_OFFSET_MOTOR 1075
 #define CAR_MOTOR_RATE 50
+#define CAR_MOTOR_RATIO 10.0  // MAX -> MIN : 2ms -> 1ms        (MAX - MIN)/ (1000 / 20 ms) = 10
 
 #define CAR_MAX_SERVO 2000
 #define CAR_MID_SERVO 1500

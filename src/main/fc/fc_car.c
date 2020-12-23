@@ -166,7 +166,7 @@ void carProcessLoop(void) {
 }
 
 void carOutputReset(void) {
-  car_output_port.motor = CAR_MIN_MOTOR;
+  car_output_port.motor = CAR_MID_MOTOR;
   car_output_port.servo = CAR_MID_SERVO;
   carOutput();
 }
@@ -183,7 +183,7 @@ void carOutput(void) {
   }else if (car_output_port.servo < CAR_MIN_SERVO) {
     car_output_port.servo = CAR_MIN_SERVO;
   }
-  pwmWriteMotor(0, car_output_port.motor + CAR_OFFSET_MOTOR);
+  pwmWriteMotor(0, car_output_port.motor / CAR_MOTOR_RATIO + CAR_OFFSET_MOTOR);
   pwmWriteServo(0, car_output_port.servo);
 }
 
