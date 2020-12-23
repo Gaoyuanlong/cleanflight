@@ -1626,7 +1626,9 @@ static mspResult_e mspFcProcessInCommand(uint8_t cmdMSP, sbuf_t *src)
 
     case MSP_SET_MOTOR:
         for (int i = 0; i < 8; i++) {
-            carSetMotor(convertExternalToMotor(sbufReadU16(src)));
+            float temp = convertExternalToMotor(sbufReadU16(src));
+            carSetMotor(temp);
+            carSetServo(temp);
         }
         break;
 

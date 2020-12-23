@@ -162,7 +162,7 @@ void carInit(void) {
 }
 
 void carProcessLoop(void) {
-
+  carOutput();
 }
 
 void carOutputReset(void) {
@@ -207,7 +207,7 @@ void carSetMotor(float motor) {
  void carSetServo(float servo) {
   if (servo > CAR_MAX_MOTOR) {
     servo = CAR_MAX_MOTOR;
-  }else if (car_output_port.servo < CAR_MIN_SERVO) {
+  }else if (servo < CAR_MIN_SERVO) {
     servo = CAR_MIN_SERVO;
   }
   car_output_port.servo = servo;

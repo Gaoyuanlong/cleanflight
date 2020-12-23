@@ -18,8 +18,8 @@
 #pragma once
 
 #define CAR_MAX_MOTOR 2000
-#define CAR_MIN_MOTOR 1100
-#define CAR_OFFSET_MOTOR -1000
+#define CAR_MIN_MOTOR 1000
+#define CAR_OFFSET_MOTOR 0
 #define CAR_MOTOR_RATE 50
 
 #define CAR_MAX_SERVO 2000

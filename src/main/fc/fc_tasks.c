@@ -42,6 +42,7 @@
 #include "drivers/vtx_common.h"
 #include "drivers/transponder_ir.h"
 
+#include "fc/fc_car.h"
 #include "fc/config.h"
 #include "fc/fc_msp.h"
 #include "fc/fc_tasks.h"
@@ -126,6 +127,7 @@ static void taskHandleSerial(timeUs_t currentTimeUs)
     bool evaluateMspData = osdSlaveIsLocked ?  MSP_SKIP_NON_MSP_DATA : MSP_EVALUATE_NON_MSP_DATA;;
 #endif
     mspSerialProcess(evaluateMspData, mspFcProcessCommand, mspFcProcessReply);
+    carProcessLoop();
 }
 
 void taskBatteryAlerts(timeUs_t currentTimeUs)
@@ -358,6 +360,11 @@ void fcTasksInit(void)
 #endif
 }
 #endif
+// static void taskUpdateCar(timeUs_t currentTimeUs)
+// {
+//     UNUSED(currentTimeUs);
+//     carProcessLoop();
+// }
 
 cfTask_t cfTasks[TASK_COUNT] = {
     [TASK_SYSTEM] = {
@@ -366,6 +373,12 @@ cfTask_t cfTasks[TASK_COUNT] = {
         .desiredPeriod = TASK_PERIOD_HZ(10),        // 10Hz, every 100 ms
         .staticPriority = TASK_PRIORITY_MEDIUM_HIGH,
     },
+    // [TASK_CAR] = {
+    //     .taskName = "CAR",
+    //     .taskFunc = taskUpdateCar,
+    //     .desiredPeriod = TASK_GYROPID_DESIRED_PERIOD,
+    //     .staticPriority = TASK_PRIORITY_REALTIME,
+    // },
 
 #ifndef USE_OSD_SLAVE
     // [TASK_GYROPID] = {

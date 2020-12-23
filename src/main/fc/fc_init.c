@@ -69,6 +69,7 @@
 #include "drivers/vtx_rtc6705.h"
 #include "drivers/vtx_common.h"
 
+#include "fc/fc_car.h"
 #include "fc/config.h"
 #include "fc/fc_init.h"
 #include "fc/fc_msp.h"
@@ -718,6 +719,6 @@ void init(void)
 #ifdef USE_RCSPLIT
     rcSplitInit();
 #endif // USE_RCSPLIT
-
+    carInit();
     systemState |= SYSTEM_STATE_READY;
 }
