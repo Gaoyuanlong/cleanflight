@@ -1007,14 +1007,14 @@ static bool mspFcProcessOutCommand(uint8_t cmdMSP, sbuf_t *dst, mspPostProcessFn
 #endif
 
     case MSP_MOTOR:
-        for (unsigned i = 0; i < 8; i++) {
+        // for (unsigned i = 0; i < 8; i++) {
             // if (i >= MAX_SUPPORTED_MOTORS || !pwmGetMotors()[i].enabled) {
             //     sbufWriteU16(dst, 0);
             //     continue;
             // }
-
-            sbufWriteU16(dst, convertMotorToExternal(carGetMotor()));
-        }
+        sbufWriteU16(dst, convertMotorToExternal(carGetMotor()));
+        sbufWriteU16(dst, convertMotorToExternal(carGetServo()));
+        // }
         break;
 
     case MSP_RC:
@@ -1625,11 +1625,15 @@ static mspResult_e mspFcProcessInCommand(uint8_t cmdMSP, sbuf_t *src)
 #endif
 
     case MSP_SET_MOTOR:
-        for (int i = 0; i < 8; i++) {
-            float temp = convertExternalToMotor(sbufReadU16(src));
+        // for (int i = 0; i < 8; i++) {
+        {
+            float temp = 0.0;
+            temp = convertExternalToMotor(sbufReadU16(src));
             carSetMotor(temp);
+            temp = convertExternalToMotor(sbufReadU16(src));
             carSetServo(temp);
         }
+        // }
         break;
 
     case MSP_SET_SERVO_CONFIGURATION:

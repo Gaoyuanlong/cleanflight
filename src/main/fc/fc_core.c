@@ -675,7 +675,7 @@ void taskMainPidLoop(timeUs_t currentTimeUs)
     } else {
         pidUpdateCountdown = setPidUpdateCountDown();
         subTaskPidController(currentTimeUs);
-        subTaskMotorUpdate();
+        // subTaskMotorUpdate();
         runTaskMainSubprocesses = true;
     }
 }
